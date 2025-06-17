@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QMetaObject>
 #include "video/cvvideocapture.h"
-#include "grpc/grpcstub.h"
+#include "grpc/sotclient.h"
 #include "video/cvvideocapture.h"
 #include <QThread>
 

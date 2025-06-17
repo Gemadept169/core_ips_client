@@ -3,6 +3,7 @@
 #include <QImage>
 #include <QDebug>
 #include <opencv2/imgproc.hpp>
+#include "common.h"
 
 namespace {
     QImage convertMat2QImage(const cv::Mat &inMat) {
@@ -53,7 +54,10 @@ MainWindow::MainWindow(QWidget *parent)
     _cap(new CvVideoCapture("rtsp://localhost:8555/cam"))
 {
     ui->setupUi(this);
+
     qRegisterMetaType<cv::Mat>("cv::Mat");
+    qRegisterMetaType<BBox>("BBox");
+
     _cap->moveToThread(&_capThread);
     QObject::connect(_cap, &CvVideoCapture::hasVideoNewFrame, this, &MainWindow::handleVideoNewFrame);
     QObject::connect(&_capThread, &QThread::started, _cap, &CvVideoCapture::startCapture);
