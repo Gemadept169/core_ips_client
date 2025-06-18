@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 ## Grpc++
 INCLUDEPATH += /home/capybara/Downloads/grpc-release/release/include
 unix:!macx: LIBS += -L/home/capybara/Downloads/grpc-release/release/lib \
--lgrpc++ -lgrpc -lgpr -lprotobuf -labsl_log_internal_check_op -labsl_log_internal_message \
+-lgrpc++ -lgrpc -lgpr -lprotobuf  -labsl_log_internal_check_op -labsl_log_internal_message \
 -labsl_log_internal_nullguard -labsl_synchronization -labsl_cord -labsl_cordz_info -labsl_cordz_functions
 
 ##### Libraries including

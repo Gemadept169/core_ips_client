@@ -51,17 +51,26 @@ namespace {
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow),
-    _cap(new CvVideoCapture("rtsp://localhost:8555/cam"))
+    _cap(new CvVideoCapture("rtsp://localhost:8555/cam")),
+    _grpcClient(new GrpcClient())
 {
     ui->setupUi(this);
 
     qRegisterMetaType<cv::Mat>("cv::Mat");
     qRegisterMetaType<BBox>("BBox");
+    qRegisterMetaType<SotInfo>("SotInfo");
 
     _cap->moveToThread(&_capThread);
     QObject::connect(_cap, &CvVideoCapture::hasVideoNewFrame, this, &MainWindow::handleVideoNewFrame);
     QObject::connect(&_capThread, &QThread::started, _cap, &CvVideoCapture::startCapture);
     QObject::connect(&_capThread, &QThread::finished, _cap, &CvVideoCapture::deleteLater);
+
+    _grpcClient->moveToThread(&_grpcThread);
+    QObject::connect(&_grpcThread, &QThread::started, _grpcClient, &GrpcClient::atStarted);
+    QObject::connect(&_grpcThread, &QThread::finished, _grpcClient, &GrpcClient::deleteLater);
+
+
+    _grpcThread.start();
     _capThread.start();
 }
 

@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QMetaObject>
 #include "video/cvvideocapture.h"
-#include "grpc/sotclient.h"
+#include "grpc/grpcclient.h"
 #include "video/cvvideocapture.h"
 #include <QThread>
 
@@ -32,5 +32,7 @@ private:
     Ui::MainWindow *ui;
     CvVideoCapture *_cap;
     QThread _capThread;
+    GrpcClient *_grpcClient;
+    QThread _grpcThread;
 };
 #endif // MAINWINDOW_H

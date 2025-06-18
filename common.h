@@ -2,8 +2,8 @@
 #define COMMON_H
 
 struct BBox {
-    float xtl;      // x top-left
-    float ytl;      // y top-left
+    float xtl;  // x top-left
+    float ytl;  // y top-left
     float width;
     float height;
 
@@ -33,5 +33,4 @@ struct SotInfo {
     };
 };
 
-
-#endif // COMMON_H
+#endif  // COMMON_H

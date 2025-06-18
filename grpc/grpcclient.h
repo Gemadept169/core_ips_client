@@ -1,17 +1,27 @@
 #ifndef GRPCCLIENT_H
 #define GRPCCLIENT_H
 
-#include "grpc/grpc.h"
-#include "api/sot_service.grpc.pb.h"
+#include <QObject>
+#include <QMetaObject>
+#include "common.h"
 
-class GrpcClient : public grpc::ClientReadReactor<core_ips::sot::TrackResponse> {
+class SotClient;
+class GrpcClient : public QObject {
+    Q_OBJECT
 public:
-    explicit GrpcClient();
+    explicit GrpcClient(QObject* parent = nullptr);
     GrpcClient(const GrpcClient &) = delete;
     GrpcClient &operator=(const GrpcClient &) = delete;
     ~GrpcClient();
 
+signals:
+    void hasSotTrackNewResponse(const SotInfo&);
+
+public slots:
+    void atStarted();
+
 private:
+    SotClient *_sotClient;
 
 };
 
