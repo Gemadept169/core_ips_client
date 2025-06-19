@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMetaObject>
 #include "common.h"
+#include <QThread>
 
 class SotClient;
 class GrpcClient : public QObject {
@@ -19,6 +20,9 @@ signals:
 
 public slots:
     void atStarted();
+    void startTracking(const BBox& box);
+    void stopTracking();
+
 
 private:
     SotClient *_sotClient;

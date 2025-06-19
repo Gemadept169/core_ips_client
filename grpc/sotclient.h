@@ -13,6 +13,7 @@
 #include "common.h"
 #include "grpcclient.h"
 
+class SotReader;
 class SotClient {
    public:
     explicit SotClient(std::shared_ptr<grpc::Channel> channel, GrpcClient* client);
@@ -21,11 +22,13 @@ class SotClient {
     ~SotClient();
 
     void track(const BBox& initBox);
+    void stop();
 
    private:
     std::unique_ptr<core_ips::sot::Sot::Stub> _stub;
     std::vector<core_ips::sot::TrackResponse> _responceList;
     GrpcClient* _client;
+    SotReader* _reader;
 };
 
 #endif  // SOTCLIENT_H

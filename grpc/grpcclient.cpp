@@ -8,9 +8,19 @@ GrpcClient::GrpcClient(QObject* parent)
 }
 
 void GrpcClient::atStarted() {
-    _sotClient = new SotClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()), this);
+    this->_sotClient = new SotClient(grpc::CreateChannel("localhost:52124", grpc::InsecureChannelCredentials()), this);
+}
+
+void GrpcClient::startTracking(const BBox &box) {
+    _sotClient->track(box);
+}
+
+void GrpcClient::stopTracking() {
+    _sotClient->stop();
 }
 
 GrpcClient::~GrpcClient() {
-
+    if (_sotClient) {
+        delete _sotClient;
+    }
 }
