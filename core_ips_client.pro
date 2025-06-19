@@ -3,23 +3,20 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 ## Grpc++
-INCLUDEPATH += /home/capybara/Downloads/grpc-release/release/include
-unix:!macx: LIBS += -L/home/capybara/Downloads/grpc-release/release/lib \
+INCLUDEPATH += /home/thai/Releases/grpc/include
+unix:!macx: LIBS += -L/home/thai/Releases/grpc/lib \
 -lgrpc++ -lgrpc -lgpr -lprotobuf  -labsl_log_internal_check_op -labsl_log_internal_message \
 -labsl_log_internal_nullguard -labsl_synchronization -labsl_cord -labsl_cordz_info -labsl_cordz_functions
 
 ##### Libraries including
 ## Opencv4
-INCLUDEPATH += /usr/local/include/opencv4
+INCLUDEPATH += /home/thai/Releases/opencv/include/opencv4
 # Include all libs of opencv4
-unix:!macx: LIBS += $(shell pkg-config opencv4 --libs)
-
+unix:!macx: LIBS += -L/home/thai/Releases/opencv/lib \
+-lopencv_imgproc -lopencv_core -lopencv_videoio -lopencv_highgui \
+-lopencv_imgcodecs -lopencv_freetype -lopencv_ximgproc
 
 CONFIG += c++17
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     api/sot_service.grpc.pb.cc \
