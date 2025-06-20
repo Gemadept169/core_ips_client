@@ -38,7 +38,9 @@ public slots:
     void handleNewSotInfo(const SotInfo& info);
 
 private slots:
-    void on_pushButton_toggled(bool checked);
+    void on_btnTest_clicked();
+
+    void on_btnSot_toggled(bool checked);
 
 private:
     void scrollMouseOnStream(float deltaY);

@@ -82,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     _grpcThread.start();
     _capThread.start();
+
+    qDebug() << "MainWindow ctor:" << QThread::currentThreadId();
 }
 
 MainWindow::~MainWindow() {
@@ -118,15 +120,6 @@ void MainWindow::handleNewSotInfo(const SotInfo &info) {
     _sotInfo = info;
 }
 
-void MainWindow::on_pushButton_toggled(bool checked) {
-    _trackLostCounter = 0;
-    if (checked) {
-        _trackState = TrackState::PAUSE;
-    } else {
-        _trackState = TrackState::STOP;
-    }
-}
-
 void MainWindow::scrollMouseOnStream(float deltaY) {
     const float wheelDeltaY = deltaY / (120.0f * 20.0f);
     _initBoxSize = static_cast<int>(_initBoxSize * (1.0f - wheelDeltaY));
@@ -145,8 +138,8 @@ bool MainWindow::eventFilter(QObject *target, QEvent *event) {
                 QPoint pos = mouseEvent->pos();
                 const int x = static_cast<int>(pos.x() * wRatio);
                 const int y = static_cast<int>(pos.y() * hRatio);
-                qDebug() << "+== initBox x, y, w, h" << x << y << _initBoxSize << _initBoxSize ;
                 _trackState = TrackState::START;
+                qDebug() << "MainWindow before startTracking:" << QThread::currentThreadId();
                 emit startTracking(BBox(x, y, _initBoxSize, _initBoxSize));
             } else {
                 emit stopTracking();
@@ -182,6 +175,21 @@ void MainWindow::drawTrackBox(cv::Mat &frame) {
     if (_trackLostCounter > 15) {
         _trackLostCounter = 0;
         emit stopTracking();
+    }
+}
+
+
+void MainWindow::on_btnTest_clicked() {
+    emit stopTracking();
+}
+
+
+void MainWindow::on_btnSot_toggled(bool checked) {
+    _trackLostCounter = 0;
+    if (checked) {
+        _trackState = TrackState::PAUSE;
+    } else {
+        _trackState = TrackState::STOP;
     }
 }
 
