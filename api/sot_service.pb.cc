@@ -177,30 +177,36 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_sot_5fservice_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\021sot_service.proto\022\014core_ips.sot\"\?\n\004BBo"
-    "x\022\013\n\003xtl\030\001 \001(\002\022\013\n\003ytl\030\002 \001(\002\022\r\n\005width\030\003 \001"
-    "(\002\022\016\n\006height\030\004 \001(\002\":\n\007SotInfo\022 \n\004bbox\030\001 "
-    "\001(\0132\022.core_ips.sot.BBox\022\r\n\005score\030\002 \001(\002\"5"
-    "\n\014TrackRequest\022%\n\tinit_bbox\030\001 \001(\0132\022.core"
-    "_ips.sot.BBox\"\312\001\n\rTrackResponse\0220\n\005state"
-    "\030\001 \001(\0162!.core_ips.sot.TrackResponse.Stat"
-    "e\022%\n\006result\030\002 \001(\0132\025.core_ips.sot.SotInfo"
-    "\"`\n\005State\022\010\n\004NONE\020\000\022\n\n\006NORMAL\020\001\022\017\n\013INTER"
-    "RUPTED\020\002\022\030\n\024NOT_ENOUGH_RESOURCES\020\003\022\026\n\022VI"
-    "DEO_DISCONNECTED\020\0042K\n\003Sot\022D\n\005Track\022\032.cor"
-    "e_ips.sot.TrackRequest\032\033.core_ips.sot.Tr"
-    "ackResponse\"\0000\001b\006proto3"
+    "\n\021sot_service.proto\022\014core_ips.sot\032\033googl"
+    "e/protobuf/empty.proto\"\?\n\004BBox\022\013\n\003xtl\030\001 "
+    "\001(\002\022\013\n\003ytl\030\002 \001(\002\022\r\n\005width\030\003 \001(\002\022\016\n\006heigh"
+    "t\030\004 \001(\002\":\n\007SotInfo\022 \n\004bbox\030\001 \001(\0132\022.core_"
+    "ips.sot.BBox\022\r\n\005score\030\002 \001(\002\"5\n\014TrackRequ"
+    "est\022%\n\tinit_bbox\030\001 \001(\0132\022.core_ips.sot.BB"
+    "ox\"\312\001\n\rTrackResponse\0220\n\005state\030\001 \001(\0162!.co"
+    "re_ips.sot.TrackResponse.State\022%\n\006result"
+    "\030\002 \001(\0132\025.core_ips.sot.SotInfo\"`\n\005State\022\010"
+    "\n\004NONE\020\000\022\n\n\006NORMAL\020\001\022\017\n\013INTERRUPTED\020\002\022\030\n"
+    "\024NOT_ENOUGH_RESOURCES\020\003\022\026\n\022VIDEO_DISCONN"
+    "ECTED\020\0042\212\001\n\003Sot\022D\n\005Track\022\032.core_ips.sot."
+    "TrackRequest\032\033.core_ips.sot.TrackRespons"
+    "e\"\0000\001\022=\n\tTrackStop\022\026.google.protobuf.Emp"
+    "ty\032\026.google.protobuf.Empty\"\000b\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_sot_5fservice_2eproto_deps[1] =
+    {
+        &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
 };
 static ::absl::once_flag descriptor_table_sot_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_sot_5fservice_2eproto = {
     false,
     false,
-    503,
+    596,
     descriptor_table_protodef_sot_5fservice_2eproto,
     "sot_service.proto",
     &descriptor_table_sot_5fservice_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_sot_5fservice_2eproto_deps,
+    1,
     4,
     schemas,
     file_default_instances,

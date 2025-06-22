@@ -24,6 +24,7 @@ namespace sot {
 
 static const char* Sot_method_names[] = {
   "/core_ips.sot.Sot/Track",
+  "/core_ips.sot.Sot/TrackStop",
 };
 
 std::unique_ptr< Sot::Stub> Sot::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -34,6 +35,7 @@ std::unique_ptr< Sot::Stub> Sot::NewStub(const std::shared_ptr< ::grpc::ChannelI
 
 Sot::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Track_(Sot_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_TrackStop_(Sot_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReader< ::core_ips::sot::TrackResponse>* Sot::Stub::TrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
@@ -52,6 +54,29 @@ void Sot::Stub::async::Track(::grpc::ClientContext* context, const ::core_ips::s
   return ::grpc::internal::ClientAsyncReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), cq, rpcmethod_Track_, context, request, false, nullptr);
 }
 
+::grpc::Status Sot::Stub::TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TrackStop_, context, request, response);
+}
+
+void Sot::Stub::async::TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TrackStop_, context, request, response, std::move(f));
+}
+
+void Sot::Stub::async::TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TrackStop_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Sot::Stub::PrepareAsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TrackStop_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Sot::Stub::AsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTrackStopRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Sot::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Sot_method_names[0],
@@ -63,6 +88,16 @@ Sot::Service::Service() {
              ::grpc::ServerWriter<::core_ips::sot::TrackResponse>* writer) {
                return service->Track(ctx, req, writer);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Sot_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Sot::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Sot::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->TrackStop(ctx, req, resp);
+             }, this)));
 }
 
 Sot::Service::~Service() {
@@ -72,6 +107,13 @@ Sot::Service::~Service() {
   (void) context;
   (void) request;
   (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Sot::Service::TrackStop(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

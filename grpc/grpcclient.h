@@ -2,12 +2,19 @@
 #define GRPCCLIENT_H
 
 #include <QObject>
-#include <QMetaObject>
+#include <grpcpp/channel.h>
+#include <grpcpp/security/credentials.h>
+#include "api/sot_service.grpc.pb.h"
 #include "common.h"
-#include <QThread>
+#include <memory>
 
-class SotClient;
+class GrpcSotTrackImpl;
+class GrpcSotTrackStopImpl;
+
 class GrpcClient : public QObject {
+    friend GrpcSotTrackImpl;
+    friend GrpcSotTrackStopImpl;
+
     Q_OBJECT
 public:
     explicit GrpcClient(QObject* parent = nullptr);
@@ -17,16 +24,15 @@ public:
 
 signals:
     void hasSotTrackNewResponse(const SotInfo&);
+    void hasSotTrackStatus(const grpc::Status&);
 
 public slots:
     void atStarted();
     void startTracking(const BBox& box);
     void stopTracking();
 
-
 private:
-    SotClient *_sotClient;
-
+    std::shared_ptr<grpc::Channel> _channel;
 };
 
 #endif // GRPCCLIENT_H

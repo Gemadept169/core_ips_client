@@ -22,7 +22,6 @@ SOURCES += \
     api/sot_service.grpc.pb.cc \
     api/sot_service.pb.cc \
     grpc/grpcclient.cpp \
-    grpc/sotclient.cpp \
     main.cpp \
     mainwindow.cpp \
     video/cvvideocapture.cpp
@@ -32,7 +31,6 @@ HEADERS += \
     api/sot_service.pb.h \
     common.h \
     grpc/grpcclient.h \
-    grpc/sotclient.h \
     mainwindow.h \
     video/cvvideocapture.h
 

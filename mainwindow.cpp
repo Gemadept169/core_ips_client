@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
     qRegisterMetaType<cv::Mat>("cv::Mat");
     qRegisterMetaType<BBox>("BBox");
     qRegisterMetaType<SotInfo>("SotInfo");
+    qRegisterMetaType<grpc::Status>("grpc::Status");
 
     _cap->moveToThread(&_capThread);
     QObject::connect(_cap, &CvVideoCapture::hasVideoNewFrame, this, &MainWindow::handleVideoNewFrame);
