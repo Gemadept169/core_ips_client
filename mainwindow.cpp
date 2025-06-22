@@ -177,7 +177,7 @@ void MainWindow::drawTrackBox(cv::Mat &frame) {
         _trackLostCounter += 1;
         cv::rectangle(frame, rectObj, cv::Scalar(0, 0, 255), 2); // Red if lost
     }
-    if (_trackLostCounter > 15) {
+    if (_trackLostCounter > 30) {
         _trackLostCounter = 0;
         emit stopTracking();
     }
