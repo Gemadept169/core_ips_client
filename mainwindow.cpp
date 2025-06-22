@@ -85,8 +85,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     _grpcThread.start();
     _capThread.start();
-
-    qDebug() << "MainWindow ctor:" << QThread::currentThreadId();
 }
 
 MainWindow::~MainWindow() {
@@ -147,7 +145,6 @@ bool MainWindow::eventFilter(QObject *target, QEvent *event) {
                 const int x = static_cast<int>(pos.x() * wRatio);
                 const int y = static_cast<int>(pos.y() * hRatio);
                 _trackState = TrackState::START;
-                qDebug() << "MainWindow before startTracking:" << QThread::currentThreadId();
                 emit startTracking(BBox(x, y, _initBoxSize, _initBoxSize));
             } else {
                 emit stopTracking();
@@ -189,6 +186,9 @@ void MainWindow::drawTrackBox(cv::Mat &frame) {
 
 void MainWindow::on_btnTest_clicked() {
     emit stopTracking();
+    if (ui->btnSot->isChecked()) {
+        this->ui->btnSot->setChecked(false);
+    }
 }
 
 

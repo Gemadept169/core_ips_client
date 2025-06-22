@@ -23,7 +23,7 @@ namespace core_ips {
 namespace sot {
 
 static const char* Sot_method_names[] = {
-  "/core_ips.sot.Sot/Track",
+  "/core_ips.sot.Sot/TrackStart",
   "/core_ips.sot.Sot/TrackStop",
 };
 
@@ -34,24 +34,24 @@ std::unique_ptr< Sot::Stub> Sot::NewStub(const std::shared_ptr< ::grpc::ChannelI
 }
 
 Sot::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Track_(Sot_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  : channel_(channel), rpcmethod_TrackStart_(Sot_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_TrackStop_(Sot_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::ClientReader< ::core_ips::sot::TrackResponse>* Sot::Stub::TrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), rpcmethod_Track_, context, request);
+::grpc::ClientReader< ::core_ips::sot::TrackResponse>* Sot::Stub::TrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), rpcmethod_TrackStart_, context, request);
 }
 
-void Sot::Stub::async::Track(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::core_ips::sot::TrackResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Track_, context, request, reactor);
+void Sot::Stub::async::TrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::core_ips::sot::TrackResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_TrackStart_, context, request, reactor);
 }
 
-::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* Sot::Stub::AsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), cq, rpcmethod_Track_, context, request, true, tag);
+::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* Sot::Stub::AsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), cq, rpcmethod_TrackStart_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* Sot::Stub::PrepareAsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), cq, rpcmethod_Track_, context, request, false, nullptr);
+::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* Sot::Stub::PrepareAsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::core_ips::sot::TrackResponse>::Create(channel_.get(), cq, rpcmethod_TrackStart_, context, request, false, nullptr);
 }
 
 ::grpc::Status Sot::Stub::TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
@@ -86,7 +86,7 @@ Sot::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::core_ips::sot::TrackRequest* req,
              ::grpc::ServerWriter<::core_ips::sot::TrackResponse>* writer) {
-               return service->Track(ctx, req, writer);
+               return service->TrackStart(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Sot_method_names[1],
@@ -103,7 +103,7 @@ Sot::Service::Service() {
 Sot::Service::~Service() {
 }
 
-::grpc::Status Sot::Service::Track(::grpc::ServerContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* writer) {
+::grpc::Status Sot::Service::TrackStart(::grpc::ServerContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* writer) {
   (void) context;
   (void) request;
   (void) writer;

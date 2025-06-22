@@ -36,14 +36,14 @@ class Sot final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>> Track(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>>(TrackRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>> TrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>>(TrackStartRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>> AsyncTrack(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>>(AsyncTrackRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>> AsyncTrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>>(AsyncTrackStartRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>> PrepareAsyncTrack(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>>(PrepareAsyncTrackRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>> PrepareAsyncTrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>>(PrepareAsyncTrackStartRaw(context, request, cq));
     }
     virtual ::grpc::Status TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncTrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -55,7 +55,7 @@ class Sot final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Track(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) = 0;
+      virtual void TrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) = 0;
       virtual void TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -63,23 +63,23 @@ class Sot final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>* TrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>* AsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>* PrepareAsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::core_ips::sot::TrackResponse>* TrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>* AsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::core_ips::sot::TrackResponse>* PrepareAsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    std::unique_ptr< ::grpc::ClientReader< ::core_ips::sot::TrackResponse>> Track(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::core_ips::sot::TrackResponse>>(TrackRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReader< ::core_ips::sot::TrackResponse>> TrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::core_ips::sot::TrackResponse>>(TrackStartRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>> AsyncTrack(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>>(AsyncTrackRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>> AsyncTrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>>(AsyncTrackStartRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>> PrepareAsyncTrack(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>>(PrepareAsyncTrackRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>> PrepareAsyncTrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>>(PrepareAsyncTrackStartRaw(context, request, cq));
     }
     ::grpc::Status TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncTrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -91,7 +91,7 @@ class Sot final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void Track(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) override;
+      void TrackStart(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ClientReadReactor< ::core_ips::sot::TrackResponse>* reactor) override;
       void TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void TrackStop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -105,12 +105,12 @@ class Sot final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientReader< ::core_ips::sot::TrackResponse>* TrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) override;
-    ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* AsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* PrepareAsyncTrackRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::core_ips::sot::TrackResponse>* TrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request) override;
+    ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* AsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::core_ips::sot::TrackResponse>* PrepareAsyncTrackStartRaw(::grpc::ClientContext* context, const ::core_ips::sot::TrackRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncTrackStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_Track_;
+    const ::grpc::internal::RpcMethod rpcmethod_TrackStart_;
     const ::grpc::internal::RpcMethod rpcmethod_TrackStop_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -119,26 +119,26 @@ class Sot final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Track(::grpc::ServerContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* writer);
+    virtual ::grpc::Status TrackStart(::grpc::ServerContext* context, const ::core_ips::sot::TrackRequest* request, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* writer);
     virtual ::grpc::Status TrackStop(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_Track : public BaseClass {
+  class WithAsyncMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Track() {
+    WithAsyncMethod_TrackStart() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_Track() override {
+    ~WithAsyncMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestTrack(::grpc::ServerContext* context, ::core_ips::sot::TrackRequest* request, ::grpc::ServerAsyncWriter< ::core_ips::sot::TrackResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestTrackStart(::grpc::ServerContext* context, ::core_ips::sot::TrackRequest* request, ::grpc::ServerAsyncWriter< ::core_ips::sot::TrackResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
@@ -162,27 +162,27 @@ class Sot final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Track<WithAsyncMethod_TrackStop<Service > > AsyncService;
+  typedef WithAsyncMethod_TrackStart<WithAsyncMethod_TrackStop<Service > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_Track : public BaseClass {
+  class WithCallbackMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Track() {
+    WithCallbackMethod_TrackStart() {
       ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackServerStreamingHandler< ::core_ips::sot::TrackRequest, ::core_ips::sot::TrackResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::core_ips::sot::TrackRequest* request) { return this->Track(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::core_ips::sot::TrackRequest* request) { return this->TrackStart(context, request); }));
     }
-    ~WithCallbackMethod_Track() override {
+    ~WithCallbackMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::core_ips::sot::TrackResponse>* Track(
+    virtual ::grpc::ServerWriteReactor< ::core_ips::sot::TrackResponse>* TrackStart(
       ::grpc::CallbackServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -212,21 +212,21 @@ class Sot final {
     virtual ::grpc::ServerUnaryReactor* TrackStop(
       ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Track<WithCallbackMethod_TrackStop<Service > > CallbackService;
+  typedef WithCallbackMethod_TrackStart<WithCallbackMethod_TrackStop<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_Track : public BaseClass {
+  class WithGenericMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Track() {
+    WithGenericMethod_TrackStart() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_Track() override {
+    ~WithGenericMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -249,22 +249,22 @@ class Sot final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Track : public BaseClass {
+  class WithRawMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Track() {
+    WithRawMethod_TrackStart() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_Track() override {
+    ~WithRawMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestTrack(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestTrackStart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
@@ -289,25 +289,25 @@ class Sot final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Track : public BaseClass {
+  class WithRawCallbackMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Track() {
+    WithRawCallbackMethod_TrackStart() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->Track(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->TrackStart(context, request); }));
     }
-    ~WithRawCallbackMethod_Track() override {
+    ~WithRawCallbackMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* Track(
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* TrackStart(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -361,34 +361,34 @@ class Sot final {
   };
   typedef WithStreamedUnaryMethod_TrackStop<Service > StreamedUnaryService;
   template <class BaseClass>
-  class WithSplitStreamingMethod_Track : public BaseClass {
+  class WithSplitStreamingMethod_TrackStart : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithSplitStreamingMethod_Track() {
+    WithSplitStreamingMethod_TrackStart() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::core_ips::sot::TrackRequest, ::core_ips::sot::TrackResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerSplitStreamer<
                      ::core_ips::sot::TrackRequest, ::core_ips::sot::TrackResponse>* streamer) {
-                       return this->StreamedTrack(context,
+                       return this->StreamedTrackStart(context,
                          streamer);
                   }));
     }
-    ~WithSplitStreamingMethod_Track() override {
+    ~WithSplitStreamingMethod_TrackStart() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Track(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
+    ::grpc::Status TrackStart(::grpc::ServerContext* /*context*/, const ::core_ips::sot::TrackRequest* /*request*/, ::grpc::ServerWriter< ::core_ips::sot::TrackResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedTrack(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::core_ips::sot::TrackRequest,::core_ips::sot::TrackResponse>* server_split_streamer) = 0;
+    virtual ::grpc::Status StreamedTrackStart(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::core_ips::sot::TrackRequest,::core_ips::sot::TrackResponse>* server_split_streamer) = 0;
   };
-  typedef WithSplitStreamingMethod_Track<Service > SplitStreamedService;
-  typedef WithSplitStreamingMethod_Track<WithStreamedUnaryMethod_TrackStop<Service > > StreamedService;
+  typedef WithSplitStreamingMethod_TrackStart<Service > SplitStreamedService;
+  typedef WithSplitStreamingMethod_TrackStart<WithStreamedUnaryMethod_TrackStop<Service > > StreamedService;
 };
 
 }  // namespace sot

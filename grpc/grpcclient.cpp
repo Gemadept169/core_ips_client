@@ -13,7 +13,7 @@ public:
         _request.mutable_init_bbox()->set_width(box.width);
         _request.mutable_init_bbox()->set_height(box.height);
         _stub = core_ips::sot::Sot::NewStub(_client->_channel);
-        _stub->async()->Track(&_context, &_request, this);
+        _stub->async()->TrackStart(&_context, &_request, this);
         StartRead(&_response);
         StartCall();
     };

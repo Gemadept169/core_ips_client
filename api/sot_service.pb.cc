@@ -188,10 +188,11 @@ const char descriptor_table_protodef_sot_5fservice_2eproto[] ABSL_ATTRIBUTE_SECT
     "\030\002 \001(\0132\025.core_ips.sot.SotInfo\"`\n\005State\022\010"
     "\n\004NONE\020\000\022\n\n\006NORMAL\020\001\022\017\n\013INTERRUPTED\020\002\022\030\n"
     "\024NOT_ENOUGH_RESOURCES\020\003\022\026\n\022VIDEO_DISCONN"
-    "ECTED\020\0042\212\001\n\003Sot\022D\n\005Track\022\032.core_ips.sot."
-    "TrackRequest\032\033.core_ips.sot.TrackRespons"
-    "e\"\0000\001\022=\n\tTrackStop\022\026.google.protobuf.Emp"
-    "ty\032\026.google.protobuf.Empty\"\000b\006proto3"
+    "ECTED\020\0042\217\001\n\003Sot\022I\n\nTrackStart\022\032.core_ips"
+    ".sot.TrackRequest\032\033.core_ips.sot.TrackRe"
+    "sponse\"\0000\001\022=\n\tTrackStop\022\026.google.protobu"
+    "f.Empty\032\026.google.protobuf.Empty\"\000b\006proto"
+    "3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_sot_5fservice_2eproto_deps[1] =
     {
@@ -201,7 +202,7 @@ static ::absl::once_flag descriptor_table_sot_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_sot_5fservice_2eproto = {
     false,
     false,
-    596,
+    601,
     descriptor_table_protodef_sot_5fservice_2eproto,
     "sot_service.proto",
     &descriptor_table_sot_5fservice_2eproto_once,
