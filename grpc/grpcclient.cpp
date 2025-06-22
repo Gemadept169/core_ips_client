@@ -76,12 +76,10 @@ void GrpcClient::atStarted() {
 }
 
 void GrpcClient::startTracking(const BBox &box) {
-    qDebug() << "+== 1 " << QThread::currentThreadId();
     new GrpcSotTrackImpl(this, box);
 }
 
 void GrpcClient::stopTracking() {
-    qDebug() << "+== 2 " << QThread::currentThreadId();
     new GrpcSotTrackStopImpl(this);
 }
 

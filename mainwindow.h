@@ -8,6 +8,7 @@
 #include "video/cvvideocapture.h"
 #include <QThread>
 #include <QMouseEvent>
+#include "widgets/toast.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -36,6 +37,7 @@ signals:
 public slots:
     void handleVideoNewFrame(const cv::Mat& frame);
     void handleNewSotInfo(const SotInfo& info);
+    void handleSotTrackStatus(const grpc::Status& status);
 
 private slots:
     void on_btnTest_clicked();

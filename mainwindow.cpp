@@ -5,6 +5,7 @@
 #include <opencv2/imgproc.hpp>
 #include "common.h"
 #include <cmath>
+#include <string>
 
 
 namespace {
@@ -80,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this, &MainWindow::startTracking, _grpcClient, &GrpcClient::startTracking);
     QObject::connect(this, &MainWindow::stopTracking, _grpcClient, &GrpcClient::stopTracking);
     QObject::connect(_grpcClient, &GrpcClient::hasSotTrackNewResponse, this, &MainWindow::handleNewSotInfo);
+    QObject::connect(_grpcClient, &GrpcClient::hasSotTrackStatus, this, &MainWindow::handleSotTrackStatus);
 
     _grpcThread.start();
     _capThread.start();
@@ -119,6 +121,11 @@ void MainWindow::handleVideoNewFrame(const cv::Mat &frame) {
 void MainWindow::handleNewSotInfo(const SotInfo &info) {
     _hasNewSotInfo = true;
     _sotInfo = info;
+}
+
+void MainWindow::handleSotTrackStatus(const grpc::Status &status) {
+    std::string errorMsg = status.error_message();
+    ToastWidget::info(this, "Grpc Client", QString(errorMsg.c_str()), ToastWidget::Duration::Long);
 }
 
 void MainWindow::scrollMouseOnStream(float deltaY) {

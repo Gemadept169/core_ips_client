@@ -24,7 +24,8 @@ SOURCES += \
     grpc/grpcclient.cpp \
     main.cpp \
     mainwindow.cpp \
-    video/cvvideocapture.cpp
+    video/cvvideocapture.cpp \
+    widgets/toast.cpp
 
 HEADERS += \
     api/sot_service.grpc.pb.h \
@@ -32,7 +33,8 @@ HEADERS += \
     common.h \
     grpc/grpcclient.h \
     mainwindow.h \
-    video/cvvideocapture.h
+    video/cvvideocapture.h \
+    widgets/toast.h
 
 FORMS += \
     mainwindow.ui
